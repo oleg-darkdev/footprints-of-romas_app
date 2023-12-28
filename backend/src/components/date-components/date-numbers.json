@@ -1,0 +1,64 @@
+{
+  "collectionName": "components_date_components_date_numbers",
+  "info": {
+    "displayName": "CalendarDay",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "day": {
+      "type": "integer",
+      "required": true,
+      "default": 5
+    },
+    "month": {
+      "type": "enumeration",
+      "enum": [
+        "январь",
+        "февраль",
+        "март",
+        "апрель",
+        "май",
+        "июнь",
+        "июль",
+        "август",
+        "сентябрь",
+        "октябрь",
+        "ноябрь",
+        "декабрь"
+      ],
+      "required": true,
+      "default": "январь"
+    },
+    "subTitle": {
+      "type": "string",
+      "required": true,
+      "default": "Lorem ipsum"
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Lorem ipsum"
+    },
+    "desc": {
+      "type": "text",
+      "required": true,
+      "default": "Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups."
+    },
+    "readMore": {
+      "type": "component",
+      "repeatable": false,
+      "component": "read-more.read-more"
+    },
+    "sourcesList": {
+      "type": "component",
+      "repeatable": false,
+      "component": "sources.list"
+    },
+    "timeline": {
+      "type": "component",
+      "repeatable": false,
+      "component": "date-components.timeline"
+    }
+  }
+}

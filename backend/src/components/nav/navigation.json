@@ -1,0 +1,20 @@
+{
+  "collectionName": "components_nav_navigations",
+  "info": {
+    "displayName": "Navigation",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Lorem ipsum is placeholder"
+    },
+    "link": {
+      "type": "string",
+      "default": "/",
+      "required": true
+    }
+  }
+}

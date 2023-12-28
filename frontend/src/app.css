@@ -1,0 +1,6 @@
+@import '@fontsource/oswald';
+@import '@fontsource/noto-sans';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

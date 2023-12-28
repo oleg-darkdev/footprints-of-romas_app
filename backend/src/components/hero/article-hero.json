@@ -1,0 +1,24 @@
+{
+  "collectionName": "components_hero_article_heroes",
+  "info": {
+    "displayName": "article-hero",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "banner": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "title": {
+      "type": "string",
+      "required": true,
+      "default": "Lorem ipsum is placeholder text commonly used in the graphic.",
+      "maxLength": 130
+    }
+  }
+}
