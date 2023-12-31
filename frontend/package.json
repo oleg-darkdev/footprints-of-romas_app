@@ -22,7 +22,8 @@
     "@fontsource/noto-sans": "^5.0.18",
     "@fontsource/oswald": "^5.0.18",
     "@tanstack/svelte-query": "^4.24.4",
-    "aos": "^2.3.4"
+    "aos": "^2.3.4",
+    "leafletjs-svelte": "^0.1.1"
   },
   "devDependencies": {
     "@fontsource/fira-mono": "^4.5.10",
