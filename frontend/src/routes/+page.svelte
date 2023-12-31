@@ -1,6 +1,7 @@
 <script>
-	import { LargeCard, MediumCard, SmallCard } from '../lib/entities';
-	import { EventsSection, Header, ImageTextSection } from '../lib/widgets';
+	import { LargeCard, MediumCard, SmallCard } from '$lib/entities';
+	import { locations } from '$lib/shared';
+	import { EventsSection, Header, ImageTextSection, Map } from '$lib/widgets';
 
 	const newsList = [
 		{
@@ -97,7 +98,7 @@
 
 <section class="bg-neutral-200 py-4 px-2 md:px-5 lg:px-5">
 	<div
-		class="prose-blue prose-2xl prose font-['Noto sans'] mx-auto w-full max-w-6xl  px-2 py-8 text-justify  lg:px-6 lg:text-left "
+		class="font-['Noto sans'] prose-2xl prose-blue prose mx-auto w-full max-w-6xl  px-2 py-8 text-justify  lg:px-6 lg:text-left "
 	>
 		<div class="mx-auto w-full ">
 			<ImageTextSection data={textBlocks[0]} />
@@ -105,7 +106,7 @@
 			<div class=" mt-4 mb-8 flex flex-col items-start    md:mb-0 ">
 				{#each onlyText as text}
 					<p
-						class="my-2 text-justify text-xl font-notoSans-medium leading-8 text-gray-700 lg:text-left"
+						class="font-notoSans-medium my-2 text-justify text-xl leading-8 text-gray-700 lg:text-left"
 					>
 						{text}
 					</p>
@@ -130,3 +131,5 @@
 		<SmallCard {data} />
 	{/each}
 </EventsSection>
+
+<Map {locations} />
