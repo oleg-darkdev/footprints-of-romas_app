@@ -1,6 +1,6 @@
 <script>
 	import { LargeCard, MediumCard, SmallCard } from '$lib/entities';
-	import { locations } from '$lib/shared';
+	import { points } from '$lib/shared';
 	import { EventsSection, Header, ImageTextSection, Map } from '$lib/widgets';
 
 	const newsList = [
@@ -132,4 +132,4 @@
 	{/each}
 </EventsSection>
 
-<Map {locations} />
+<Map {points} />
