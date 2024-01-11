@@ -1,19 +1,88 @@
 <script>
-	import { Icon, Leaflet, Marker, Popup, TileLayer } from 'leafletjs-svelte';
+	import { onMount } from 'svelte';
+	import mapboxgl from 'mapbox-gl';
 
-	const mapURL = 'http://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}.png';
-	// 'subdomains'  : ['a','b','c','d','e'],';
-	const mapOption = {
-		center: [53.902330977276755, 27.550098753998842],
-		zoom: 7
-	};
+	let map;
 
-	const tileLayerOption = {
-		attribution: ``,
-		maxNativeZoom: 21,
-		maxZoom: 20,
-		subdomains: 'abcd'
-	};
+	onMount(() => {
+		mapboxgl.accessToken =
+			'pk.eyJ1Ijoic3RyYXBpLXVzZXIiLCJhIjoiY2xwZTV2YmRrMTk4ejJocmxrN3pqbGEzdCJ9.MQGuqEAPP3qrwfix8Cb--Q';
+
+		map = new mapboxgl.Map({
+			container: 'map',
+			style: 'mapbox://styles/mapbox/dark-v11',
+			center: selectedLocation.coordinates,
+			zoom: 7,
+			attribution: ``,
+			// maxNativeZoom: 21,
+			maxZoom: 20
+			// subdomains: ['a', 'b', 'c', 'd', 'e']
+		});
+
+		map.on('load', () => {
+			map.loadImage('/images/map/1.png', (error, image) => {
+				// if (error) throw error;
+
+				// map.addImage('custom-marker', image);
+
+				map.addSource('points', {
+					type: 'geojson',
+					data: {
+						type: 'FeatureCollection',
+						features: points.map((point) => ({
+							type: 'Feature',
+							geometry: {
+								type: 'Point',
+								coordinates: point.coordinates
+							},
+							properties: {
+								title: point.title,
+								description: point.description
+							}
+						}))
+					}
+				});
+
+				map.addLayer({
+					id: 'points',
+					type: 'symbol',
+					source: 'points',
+					layout: {
+						'icon-image': 'custom-marker',
+						'icon-size': 0.1,
+						'icon-allow-overlap': true
+						// 'text-field': 'Lorem impsum',
+						// 'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
+						// 'text-offset': [0, -1.6],
+						// 'text-size': 12,
+						// 'text-anchor': 'bottom',
+						// 'text-offset': [0, 2],
+						// 'color': '#ffffff'
+					}
+				});
+
+				points.forEach((point) => {
+					new mapboxgl.Marker()
+						.setLngLat(point.coordinates)
+						.addTo(map)
+						.getElement()
+						.addEventListener('click', () => {
+							handleMarkerClick(point);
+						});
+				});
+			});
+		});
+	});
+
+	function handleMarkerClick(point) {
+		selectedLocation = point;
+
+		map.flyTo({
+			center: point.coordinates,
+			zoom: 12,
+			essential: true
+		});
+	}
 
 	$: iconSize = [40, 40];
 	let radius = 1000;
@@ -21,96 +90,22 @@
 	$: selectedLocation = {
 		title: 'Lorem Ipsum is simply dummy',
 		desc: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
-		coordinateFirst: 53.902330977276755,
-		coordinateSecond: 27.550098753998842,
+		coordinates: ['27.561879', '53.902334'],
 		link: '/articles/fuck-the-strapicms',
-		markerIconOptions: {
-			iconUrl: '/images/map/1.png'
-		}
+		iconUrl: '/images/map/1.png'
 	};
 
 	let showLocation = false;
 
-	export let locations;
-
-	function handleClick(event) {
-		console.log('Pressure:', event.buttons);
-		// Обработка события нажатия мыши
-	}
-
-	function handleRelease(event) {
-		console.log('Released');
-		// Обработка события отпускания кнопки мыши
-	}
+	export let points;
 </script>
 
-<section class="grid min-h-screen  grid-flow-row grid-cols-12 ">
-	<div class=" col-span-9  h-screen">
-		{#if !showLocation}
-			<Leaflet options={mapOption}>
-				<TileLayer tileURL={mapURL} options={tileLayerOption} />
-
-				{#each locations as point, i}
-					<div
-						on:mousedown={(event) => handleClick(event)}
-						on:mouseup={(event) => handleRelease(event)}
-					>
-						<Marker latLng={L.latLng([point.coordinateFirst, point.coordinateSecond])}>
-							<Popup
-								options={{
-									content: `<div class="prose-blue prose h-auto min-h-[280px] w-[250px] rounded-xl bg-black p-4 text-white">
-                  <h3 class='font-oswald-normal text-base uppercase'>${point.title}</h3>
-                  <p class="mb-8  font-notoSans-normal  text-sm">${point.desc}</p>
-                  <a href="${point.link}" target="_blank" class="inline-flex flex-grow items-center text-left no-underline ">
-                    <span
-                      class="pr-12 text-xs font-semibold uppercase tracking-widest text-neutral-400 hover:text-neutral-600"
-                    >
-                      more info
-                    </span>
-                    <span class="ml-auto text-neutral-400 hover:text-neutral-600">»</span>
-                  </a>
-                </div>`
-								}}
-							/>
-							<Icon options={{ iconSize: iconSize, iconUrl: point.markerIconOptions.iconUrl }} />
-
-							<!-- events={['mouseout', 'mouseover']}
-						on:mouseout={(e) => {
-							iconSize = [40, 100];
-						}}
-						on:mouseover={(e) => {
-							iconSize = [100, 100];
-						}} -->
-						</Marker>
-					</div>
-				{/each}
-			</Leaflet>
-		{:else}
-			<Leaflet
-				options={{
-					zoom: 14,
-					center: [selectedLocation.coordinateFirst, selectedLocation.coordinateSecond]
-				}}
-			>
-				<TileLayer tileURL={mapURL} options={tileLayerOption} />
-
-				<div
-					on:mousedown={(event) => handleClick(event)}
-					on:mouseup={(event) => handleRelease(event)}
-				>
-					<Marker
-						latLng={L.latLng([selectedLocation.coordinateFirst, selectedLocation.coordinateSecond])}
-					>
-						<Icon
-							options={{ iconSize: iconSize, iconUrl: selectedLocation.markerIconOptions.iconUrl }}
-						/>
-					</Marker>
-				</div>
-			</Leaflet>
-		{/if}
+<section class="flex min-h-screen flex-row  ">
+	<div id="map" class=" w-full">
+		<!--  -->
 	</div>
 
-	<div class="col-span-3 flex  h-screen flex-col bg-neutral-200">
+	<div class="flex h-screen  w-[450px] flex-col bg-neutral-200">
 		<div class="flex h-40 w-full items-center justify-center bg-black bg-neutral-900 py-20 px-4">
 			<h3 class="font-oswald-normal text-xl uppercase ">Места уничтожения рома</h3>
 		</div>
@@ -133,12 +128,12 @@
 			</a>
 		</div>
 		<div class="flex max-h-[600] flex-col items-center overflow-y-scroll bg-white px-4 py-4">
-			{#each locations as location}
+			{#each points as location}
 				<div
 					on:click={() => {
-						selectedLocation = location;
-						console.log(selectedLocation);
-						showLocation = !showLocation;
+						// selectedLocation = location;
+						handleMarkerClick(location);
+						// showLocation = !showLocation;
 					}}
 					class="mx-auto my-2 w-full rounded-md bg-neutral-300 px-8 py-6"
 				>
@@ -148,3 +143,10 @@
 		</div>
 	</div>
 </section>
+
+<style>
+	#map {
+		height: 100vh;
+		width: 100%;
+	}
+</style>
