@@ -175,8 +175,8 @@
 							showLocationIndex = i;
 						}}
 						class="  mx-auto mb-1 flex w-full flex-row  items-center     {showLocationIndex == i
-							? 'bg-rose-700'
-							: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700 bg-neutral-300 shadow-lg transition ease-in-out hover:-translate-y-1  hover:rounded-md hover:border-none hover:bg-white'} py-5 px-4  "
+							? 'bg-rose-700  rounded-md'
+							: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700 bg-neutral-300 shadow-lg transition ease-in-out hover:-translate-y-1  hover:rounded-md  hover:border-none hover:bg-white'}  py-5 px-4  "
 					>
 						<div class="mr-2 h-4 w-4">
 							<img src="./images/map/fire.svg" class="h-full w-full" alt="" />
