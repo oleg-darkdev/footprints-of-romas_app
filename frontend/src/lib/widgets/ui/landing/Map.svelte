@@ -78,6 +78,12 @@
 		selectedLocation = point;
 		shortDesc = `${selectedLocation.desc.slice(0, 130)}...`;
 
+		selectedLocation.title.length < 16
+			? (textTitle = 'text-xl')
+			: selectedLocation.title.length > 16 && selectedLocation.title.length < 50
+			? (textTitle = 'text-base')
+			: (textTitle = 'text-sm');
+
 		map.flyTo({
 			center: point.coordinates,
 			zoom: 12,
@@ -88,16 +94,19 @@
 	$: iconSize = [40, 40];
 	let radius = 1000;
 
+	$: textTitle = '';
+
 	$: selectedLocation = {
-		title: 'Lorem Ipsum is simply dummy',
-		desc: `Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.`,
+		title:
+			'Зона проведения антипартизанской операции «Гамбург», в треугольнике Лида — Барановичи — Волковыск (междуречье рек Немана и Щары), декабрь 1942',
+		desc: `В оперативном приказе фюрера СС и полиции Генерального комиссариата «Беларусь» Курта фон Готтберга от 7.12.1942 г. относительно операции «Гамбург» читаем: «задача вверенных мне соединений...`,
 		coordinates: ['27.561879', '53.902334'],
 		link: '/articles/fuck-the-strapicms',
 		iconUrl: '/images/map/1.png'
 	};
 
-	let showLocation = false;
-	let showFull = false;
+	let showLocationIndex = -1;
+	let showFull = true;
 
 	$: shortDesc = 'Tap on any point on the map.';
 
@@ -109,58 +118,96 @@
 		<!--  -->
 	</div>
 
-	<div class="flex lg:h-screen md:h-screen h-auto  lg:w-[450px] md:w-[450px] flex-col bg-neutral-200">
-		<div class="flex lg:h-40 md:h-40 h-20 w-full items-center justify-center bg-black bg-neutral-900 py-6 lg:px-4 md:px-4 px-2">
+	<div
+		class="flex h-auto flex-col bg-neutral-200  md:h-screen md:w-[368px] lg:h-screen lg:w-[368px]"
+	>
+		<!-- <div class="flex lg:h-40 md:h-40 h-20 w-full items-center justify-center bg-black bg-neutral-900 py-6 lg:px-4 md:px-4 px-2">
 			<h3 class="font-oswald-normal text-md uppercase md:text-xl lg:text-xl ">
 				Места уничтожения рома
 			</h3>
-		</div>
-		<div
-			class="prose-blue prose h-auto w-full border-b border-b-2 border-neutral-900 bg-neutral-100 px-2 pt-2 text-neutral-900  md:px-4 lg:px-6"
-		>
-			<h3 class="font-oswald-normal mb-0 text-xl text-neutral-900 md:text-2xl lg:text-2xl">
-				{selectedLocation.title}
-			</h3>
-			<p class="font-notoSans-normal mb-2 h-auto text-sm text-neutral-900">
-				{showFull ? selectedLocation.desc : shortDesc}
-			</p>
+		</div> -->
+		{#if !showFull}
+			<div
+				class=" h-auto w-full bg-neutral-100 px-2 pt-10 text-neutral-900  shadow-2xl  md:px-4 lg:px-6"
+			>
+				<h3 class="font-oswald-normal  mb-4 {textTitle}  text-neutral-900">
+					{selectedLocation.title}
+				</h3>
+				<p class="font-notoSans-normal mb-2 h-auto text-xs text-neutral-900">
+					{showFull ? selectedLocation.desc : `${selectedLocation.desc.slice(0, 166)}...`}
+				</p>
 
-			<div class="flex flex-row flex-wrap pb-2 ">
-				<button
-					class="btn-neutral btn-active btn  "
-					on:click={() => {
-						showFull = !showFull;
-					}}>Show</button
-				>
-
-				<a
-					href={selectedLocation.link}
-					target="_blank"
-					class="inline-flex flex-grow items-center text-left no-underline "
-				>
-					<span
-						class="pl-20 text-xs font-semibold uppercase tracking-widest text-neutral-800 hover:text-neutral-600"
+				<div class="flex flex-row flex-wrap pb-2 ">
+					<button
+						class="mb-6 flex h-12 w-full flex-row items-center justify-center rounded-md border-2 border-neutral-900 py-2 px-4 text-center text-sm text-neutral-900 "
+						on:click={() => {
+							showFull = !showFull;
+						}}
 					>
-						more info
-					</span>
-					<span class="ml-auto text-neutral-800 hover:text-neutral-600">»</span>
-				</a>
-			</div>
-		</div>
-		<div class="flex lg:max-h-[600px] max-w-sm md:max-h-[600px] max-h-[270px] flex-col items-center overflow-y-scroll bg-white px-4 py-2">
-			{#each points as location}
-				<div
-					on:click={() => {
-						// selectedLocation = location;
-						handleMarkerClick(location);
-						// showLocation = !showLocation;
-					}}
-					class="mx-auto my-2 lg:my-2 md:my-2 my-1 w-full rounded-md bg-neutral-300 px-8 lg:py-6 md:py-6 py-4"
-				>
-					<h3 class="font-notoSans-normal text-sm text-neutral-900">{location.title}</h3>
+						<img src="./images/map/down_arow.svg" class="mr-2 h-4 w-4" alt="" />
+
+						Развернуть</button
+					>
 				</div>
-			{/each}
-		</div>
+			</div>
+			<div
+				class="flex max-h-[270px] max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:max-h-[600px] lg:max-h-[600px]"
+			>
+				{#each points as location, i}
+					<div
+						on:click={() => {
+							// selectedLocation = location;
+							handleMarkerClick(location);
+							showLocationIndex = i;
+							console.log(selectedLocation.title.length);
+						}}
+						class="  mx-auto mb-1 flex w-full flex-row  items-center     {showLocationIndex == i
+							? 'bg-rose-700'
+							: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700 bg-neutral-300 shadow-lg transition ease-in-out hover:-translate-y-1  hover:rounded-md hover:border-none hover:bg-white'} py-5 px-4  "
+					>
+						<div class="mr-2 h-4 w-4">
+							<img src="./images/map/fire.svg" class="h-full w-full" alt="" />
+						</div>
+						<h3 class="font-notoSans-normal text-base text-neutral-900">{location.title}</h3>
+					</div>
+				{/each}
+			</div>
+		{:else}
+			<div
+				class=" h-screen w-full bg-neutral-100  pt-8 text-neutral-900  shadow-2xl  md:px-4 lg:px-8"
+			>
+				<div class="mb-2 flex justify-end">
+					<button
+						on:click={() => {
+							showFull = !showFull;
+						}}
+						class="btn-outline btn-circle btn"
+					>
+						<svg
+							xmlns="http://www.w3.org/2000/svg"
+							class="h-6 w-6"
+							fill="none"
+							viewBox="0 0 24 24"
+							stroke="currentColor"
+							><path
+								stroke-linecap="round"
+								stroke-linejoin="round"
+								stroke-width="2"
+								d="M6 18L18 6M6 6l12 12"
+							/></svg
+						>
+					</button>
+				</div>
+				<h3
+					class="font-oswald-normal  mb-4 {textTitle} text-neutral-900"
+				>
+					{selectedLocation.title}
+				</h3>
+				<p class="font-notoSans-normal mb-2 h-auto text-xs text-neutral-900">
+					{selectedLocation.desc}
+				</p>
+			</div>
+		{/if}
 	</div>
 </section>
 
