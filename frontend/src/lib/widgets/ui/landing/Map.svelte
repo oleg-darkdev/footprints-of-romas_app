@@ -127,7 +127,9 @@
 			? 'w-6/12'
 			: ''}  lg:h-screen lg:w-full"
 	>
-	
+		<div class="absolute top-8 left-4 max-w-sm h-auto">
+      <LogoText textColor="text-neutral-100" />
+    </div>
 		<!-- h-[656px] -->
 	</div>
 
