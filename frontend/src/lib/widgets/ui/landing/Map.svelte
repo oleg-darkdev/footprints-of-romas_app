@@ -1,10 +1,16 @@
 <script>
 	import { onMount } from 'svelte';
 	import mapboxgl from 'mapbox-gl';
+	import { LogoText } from '$lib/shared';
 
 	let map;
+	$: isMobile = false;
 
 	onMount(() => {
+		window.innerWidth <= 490 ? (isMobile = 'sm') : (isMobile = 'md');
+
+		console.log(isMobile);
+
 		mapboxgl.accessToken =
 			'pk.eyJ1Ijoic3RyYXBpLXVzZXIiLCJhIjoiY2xwZTV2YmRrMTk4ejJocmxrN3pqbGEzdCJ9.MQGuqEAPP3qrwfix8Cb--Q';
 
@@ -106,20 +112,27 @@
 	};
 
 	let showLocationIndex = -1;
-	let showFull = true;
+	let showFull = false;
 
 	$: shortDesc = 'Tap on any point on the map.';
 
 	export let points;
 </script>
 
-<section class="flex min-h-screen  flex-col-reverse  md:flex-row lg:flex-row">
-	<div id="map" class=" w-full">
-		<!--  -->
+<section class="flex min-h-screen  flex-col md:flex-row lg:flex-row">
+	<div
+		id="map"
+		class="{isMobile == 'sm' && showFull ? 'hidden' : ''} z-2 h-full md:h-screen {isMobile == 'md' &&
+		showFull
+			? 'w-6/12'
+			: ''}  lg:h-screen lg:w-full"
+	>
+	
+		<!-- h-[656px] -->
 	</div>
 
 	<div
-		class="flex h-auto flex-col bg-neutral-200  md:h-screen md:w-[368px] lg:h-screen lg:w-[368px]"
+		class="flex h-auto  w-full flex-col bg-neutral-200 md:h-screen md:w-[368px] lg:h-screen lg:w-[368px]"
 	>
 		<!-- <div class="flex lg:h-40 md:h-40 h-20 w-full items-center justify-center bg-black bg-neutral-900 py-6 lg:px-4 md:px-4 px-2">
 			<h3 class="font-oswald-normal text-md uppercase md:text-xl lg:text-xl ">
@@ -128,7 +141,7 @@
 		</div> -->
 		{#if !showFull}
 			<div
-				class=" h-auto w-full bg-neutral-100 px-2 pt-10 text-neutral-900  shadow-2xl  md:px-4 lg:px-6"
+				class=" h-auto w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-2  lg:px-2  "
 			>
 				<h3 class="font-oswald-normal  mb-4 {textTitle}  text-neutral-900">
 					{selectedLocation.title}
@@ -151,15 +164,13 @@
 				</div>
 			</div>
 			<div
-				class="flex max-h-[270px] max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:max-h-[600px] lg:max-h-[600px]"
+				class="list flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:max-h-[600px] lg:max-h-[600px]"
 			>
 				{#each points as location, i}
 					<div
 						on:click={() => {
-							// selectedLocation = location;
 							handleMarkerClick(location);
 							showLocationIndex = i;
-							console.log(selectedLocation.title.length);
 						}}
 						class="  mx-auto mb-1 flex w-full flex-row  items-center     {showLocationIndex == i
 							? 'bg-rose-700'
@@ -173,9 +184,7 @@
 				{/each}
 			</div>
 		{:else}
-			<div
-				class=" h-screen w-full bg-neutral-100  pt-8 text-neutral-900  shadow-2xl  md:px-4 lg:px-8"
-			>
+			<div class=" h-screen w-full bg-neutral-100  px-8 pt-8  text-neutral-900 shadow-2xl">
 				<div class="mb-2 flex justify-end">
 					<button
 						on:click={() => {
@@ -198,12 +207,10 @@
 						>
 					</button>
 				</div>
-				<h3
-					class="font-oswald-normal  mb-4 {textTitle} text-neutral-900"
-				>
+				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
 				</h3>
-				<p class="font-notoSans-normal mb-2 h-auto text-xs text-neutral-900">
+				<p class="font-notoSans-normal  mb-2 h-auto overflow-y-scroll text-xs text-neutral-900">
 					{selectedLocation.desc}
 				</p>
 			</div>
@@ -219,9 +226,13 @@
 
 	@media screen and (max-width: 450px) {
 		#map {
-			max-height: 260px;
+			max-height: 656px;
 			overflow: hidden;
 			width: 100%;
+		}
+
+		.list {
+			display: none;
 		}
 	}
 </style>
