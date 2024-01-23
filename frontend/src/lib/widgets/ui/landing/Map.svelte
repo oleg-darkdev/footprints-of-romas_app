@@ -9,6 +9,10 @@
 	onMount(() => {
 		window.innerWidth <= 490 ? (isMobile = 'sm') : (isMobile = 'md');
 
+		// {
+		// 	selectedLocation.title.length < 2 ? console.log('hidden') : '';
+		// }
+
 		mapboxgl.accessToken =
 			'pk.eyJ1Ijoic3RyYXBpLXVzZXIiLCJhIjoiY2xwZTV2YmRrMTk4ejJocmxrN3pqbGEzdCJ9.MQGuqEAPP3qrwfix8Cb--Q';
 
@@ -108,7 +112,7 @@
 				class=" h-full w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
 				<h3
-					class="font-oswald-normal {selectedLocation.title.length < 2
+					class="font-oswald-normal {selectedLocation.title.length
 						? 'hidden'
 						: ''} mb-4 {textTitle}  text-neutral-900"
 				>
