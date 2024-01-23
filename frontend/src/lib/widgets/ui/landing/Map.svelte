@@ -9,8 +9,6 @@
 	onMount(() => {
 		window.innerWidth <= 490 ? (isMobile = 'sm') : (isMobile = 'md');
 
-		console.log(isMobile);
-
 		mapboxgl.accessToken =
 			'pk.eyJ1Ijoic3RyYXBpLXVzZXIiLCJhIjoiY2xwZTV2YmRrMTk4ejJocmxrN3pqbGEzdCJ9.MQGuqEAPP3qrwfix8Cb--Q';
 
@@ -86,7 +84,7 @@
 	export let points;
 </script>
 
-<section class="flex min-h-screen  flex-col md:flex-row lg:flex-row">
+<section class="flex min-h-screen  flex-col md:flex-col lg:flex-row">
 	<div
 		id="map"
 		class="{isMobile == 'sm' && showFull
@@ -99,7 +97,7 @@
 		<!-- h-[656px] -->
 	</div>
 
-	<div class="flex h-auto w-full flex-col bg-neutral-200 md:h-screen  lg:h-screen lg:w-[510px] ">
+	<div class="flex h-auto w-full flex-col bg-neutral-200 lg:h-screen lg:w-[510px] ">
 		<!-- <div class="flex lg:h-40 md:h-40 h-20 w-full items-center justify-center bg-black bg-neutral-900 py-6 lg:px-4 md:px-4 px-2">
 			<h3 class="font-oswald-normal text-md uppercase md:text-xl lg:text-xl ">
 				Места уничтожения рома
@@ -107,7 +105,7 @@
 		</div> -->
 		{#if !showFull}
 			<div
-				class=" h-auto w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
+				class=" h-full w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
 				<h3
 					class="font-oswald-normal {selectedLocation.title.length < 2
@@ -216,7 +214,9 @@
 			overflow: hidden;
 			width: 100%;
 		}
+	}
 
+	@media screen and (max-width: 800px) {
 		.list {
 			display: none;
 		}
