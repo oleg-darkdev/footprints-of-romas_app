@@ -84,9 +84,9 @@
 		selectedLocation = point;
 		shortDesc = `${selectedLocation.desc.slice(0, 130)}...`;
 
-		selectedLocation.title.length < 16
+		selectedLocation.title.length < 20
 			? (textTitle = 'text-xl')
-			: selectedLocation.title.length > 16 && selectedLocation.title.length < 50
+			: selectedLocation.title.length > 20 && selectedLocation.title.length < 50
 			? (textTitle = 'text-base')
 			: (textTitle = 'text-sm');
 
@@ -100,12 +100,11 @@
 	$: iconSize = [40, 40];
 	let radius = 1000;
 
-	$: textTitle = '';
+	$: textTitle = 'text-xl';
 
 	$: selectedLocation = {
-		title:
-			'Зона проведения антипартизанской операции «Гамбург», в треугольнике Лида — Барановичи — Волковыск (междуречье рек Немана и Щары), декабрь 1942',
-		desc: `В оперативном приказе фюрера СС и полиции Генерального комиссариата «Беларусь» Курта фон Готтберга от 7.12.1942 г. относительно операции «Гамбург» читаем: «задача вверенных мне соединений...`,
+		title: 'Lorem ipsum is placeholder',
+		desc: `Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.`,
 		coordinates: ['27.561879', '53.902334'],
 		link: '/articles/fuck-the-strapicms',
 		iconUrl: '/images/map/1.png'
@@ -122,14 +121,13 @@
 <section class="flex min-h-screen  flex-col md:flex-row lg:flex-row">
 	<div
 		id="map"
-		class="{isMobile == 'sm' && showFull ? 'hidden' : ''} z-2 h-full md:h-screen {isMobile == 'md' &&
-		showFull
-			? 'w-6/12'
-			: ''}  lg:h-screen lg:w-full"
+		class="{isMobile == 'sm' && showFull
+			? 'hidden'
+			: ''} z-2 h-full w-full md:h-screen  lg:h-screen lg:w-full"
 	>
-		<div class="absolute top-8 left-4 max-w-sm h-auto">
-      <LogoText textColor="text-neutral-100" />
-    </div>
+		<div class="absolute top-8 left-4 h-auto max-w-sm">
+			<LogoText textColor="text-neutral-100" />
+		</div>
 		<!-- h-[656px] -->
 	</div>
 
@@ -143,13 +141,13 @@
 		</div> -->
 		{#if !showFull}
 			<div
-				class=" h-auto w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-2  lg:px-2  "
+				class=" h-auto w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
 				<h3 class="font-oswald-normal  mb-4 {textTitle}  text-neutral-900">
 					{selectedLocation.title}
 				</h3>
-				<p class="font-notoSans-normal mb-2 h-auto text-xs text-neutral-900">
-					{showFull ? selectedLocation.desc : `${selectedLocation.desc.slice(0, 166)}...`}
+				<p class="font-notoSans-normal limited-text mb-2 h-auto text-sm text-neutral-900">
+					{selectedLocation.desc}
 				</p>
 
 				<div class="flex flex-row flex-wrap pb-2 ">
@@ -175,7 +173,7 @@
 							showLocationIndex = i;
 						}}
 						class="  mx-auto mb-1 flex w-full flex-row  items-center     {showLocationIndex == i
-							? 'bg-rose-700  rounded-md'
+							? 'rounded-md  bg-rose-700'
 							: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700 bg-neutral-300 shadow-lg transition ease-in-out hover:-translate-y-1  hover:rounded-md  hover:border-none hover:bg-white'}  py-5 px-4  "
 					>
 						<div class="mr-2 h-4 w-4">
@@ -212,7 +210,7 @@
 				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
 				</h3>
-				<p class="font-notoSans-normal  mb-2 h-auto overflow-y-scroll text-xs text-neutral-900">
+				<p class="font-notoSans-normal  mb-2 h-auto overflow-y-scroll text-sm text-neutral-900">
 					{selectedLocation.desc}
 				</p>
 			</div>
@@ -236,5 +234,12 @@
 		.list {
 			display: none;
 		}
+	}
+
+	.limited-text {
+		display: -webkit-box;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
+		-webkit-line-clamp: 5;
 	}
 </style>
