@@ -26,48 +26,15 @@
 		});
 
 		map.on('load', () => {
-			map.loadImage('/images/map/1.png', (error, image) => {
+			map.loadImage('', (error, image) => {
 				// if (error) throw error;
 
 				// map.addImage('custom-marker', image);
 
-				map.addSource('points', {
-					type: 'geojson',
-					data: {
-						type: 'FeatureCollection',
-						features: points.map((point) => ({
-							type: 'Feature',
-							geometry: {
-								type: 'Point',
-								coordinates: point.coordinates
-							},
-							properties: {
-								title: point.title,
-								description: point.description
-							}
-						}))
-					}
-				});
-
-				map.addLayer({
-					id: 'points',
-					type: 'symbol',
-					source: 'points',
-					layout: {
-						'icon-image': 'custom-marker',
-						'icon-size': 0.1,
-						'icon-allow-overlap': true
-						// 'text-field': 'Lorem impsum',
-						// 'text-font': ['Open Sans Semibold', 'Arial Unicode MS Bold'],
-						// 'text-offset': [0, -1.6],
-						// 'text-size': 12,
-						// 'text-anchor': 'bottom',
-						// 'text-offset': [0, 2],
-						// 'color': '#ffffff'
-					}
-				});
-
 				points.forEach((point) => {
+					const customIcon = document.createElement('div');
+					customIcon.className = 'custom-marker';
+
 					new mapboxgl.Marker()
 						.setLngLat(point.coordinates)
 						.addTo(map)
@@ -100,6 +67,7 @@
 	$: iconSize = [40, 40];
 	let radius = 1000;
 
+	// pointer
 	$: textTitle = 'text-xl';
 
 	$: selectedLocation = {
@@ -131,9 +99,7 @@
 		<!-- h-[656px] -->
 	</div>
 
-	<div
-		class="flex h-auto  w-full flex-col bg-neutral-200 md:h-screen md:w-[368px] lg:h-screen lg:w-[368px]"
-	>
+	<div class="flex h-auto w-full flex-col bg-neutral-200 md:h-screen  lg:h-screen lg:w-[510px] ">
 		<!-- <div class="flex lg:h-40 md:h-40 h-20 w-full items-center justify-center bg-black bg-neutral-900 py-6 lg:px-4 md:px-4 px-2">
 			<h3 class="font-oswald-normal text-md uppercase md:text-xl lg:text-xl ">
 				Места уничтожения рома
@@ -144,27 +110,29 @@
 				class=" h-auto w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
 				<h3
-					class="font-oswald-normal {selectedLocation.title.length
+					class="font-oswald-normal {selectedLocation.title.length < 2
 						? 'hidden'
 						: ''} mb-4 {textTitle}  text-neutral-900"
 				>
 					{selectedLocation.title}
 				</h3>
-				<p class="font-notoSans-normal limited-text mb-2 h-auto text-sm text-neutral-900">
+				<p class="font-notoSans-normal limited-text mb-2 h-auto text-dimInHuj text-neutral-900">
 					{selectedLocation.desc}
 				</p>
 
-				<div class="flex flex-row flex-wrap pb-2 ">
-					<button
-						class="mb-6 flex h-12 w-full flex-row items-center justify-center rounded-md border-2 border-neutral-900 py-2 px-4 text-center text-sm text-neutral-900 "
-						on:click={() => {
-							showFull = !showFull;
-						}}
-					>
-						<img src="./images/map/down_arow.svg" class="mr-2 h-4 w-4" alt="" />
+				<div class="flex flex-row flex-wrap {selectedLocation.title.length ? 'mb-8' : 'pb-2'}  ">
+					{#if selectedLocation.title.length}
+						<button
+							class="mb-6 flex h-12 w-full flex-row items-center justify-center rounded-md border-2 border-neutral-900 py-2 px-4 text-center text-sm text-neutral-900 "
+							on:click={() => {
+								showFull = !showFull;
+							}}
+						>
+							<img src="./images/map/down_arow.svg" class="mr-2 h-4 w-4" alt="" />
 
-						Развернуть</button
-					>
+							Развернуть</button
+						>
+					{/if}
 				</div>
 			</div>
 			<div
@@ -177,13 +145,16 @@
 							showLocationIndex = i;
 						}}
 						class="  mx-auto mb-1 flex w-full flex-row  items-center     {showLocationIndex == i
-							? 'rounded-md  bg-rose-700'
-							: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700 bg-neutral-300 shadow-lg transition ease-in-out hover:-translate-y-1  hover:rounded-md  hover:border-none hover:bg-white'}  py-5 px-4  "
+							? 'rounded-md  border-b-2 border-gray-700 bg-rose-700'
+							: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700  bg-neutral-300 transition ease-in-out hover:-translate-y-1 hover:rounded-md  hover:bg-white   hover:shadow-lg'}  py-5 px-4  "
 					>
-						<div class="mr-2 h-4 w-4">
-							<img src="./images/map/fire.svg" class="h-full w-full" alt="" />
-						</div>
-						<h3 class="font-notoSans-normal text-base text-neutral-900">{location.title}</h3>
+						<img
+							src="./images/map/fire.svg"
+							class="mr-2"
+							style="width: 18px; height: 18px;"
+							alt=""
+						/>
+						<h3 class="font-notoSans-normal max-w-sm text-sm text-neutral-900">{location.title}</h3>
 					</div>
 				{/each}
 			</div>
@@ -214,7 +185,9 @@
 				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
 				</h3>
-				<p class="font-notoSans-normal  mb-2 h-auto overflow-y-scroll text-sm text-neutral-900">
+				<p
+					class="font-notoSans-normal mb-2  h-full h-auto overflow-y-auto text-dimInHuj text-neutral-900"
+				>
 					{selectedLocation.desc}
 				</p>
 			</div>
@@ -223,6 +196,15 @@
 </section>
 
 <style>
+	.custom-marker {
+		background-image: url('images/map/pointer.svg');
+		background-size: cover;
+		width: 50px;
+		height: 50px;
+		border-radius: 50%;
+		cursor: pointer;
+	}
+
 	#map {
 		height: 100vh;
 		width: 100%;
