@@ -220,7 +220,7 @@
 		}
 	}
 
-	@media screen and (max-width: 800px) {
+	@media screen and (max-width: 1000px) {
 		.list {
 			display: none;
 		}
