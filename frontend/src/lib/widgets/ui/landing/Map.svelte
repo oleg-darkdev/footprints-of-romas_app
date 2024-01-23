@@ -103,8 +103,8 @@
 	$: textTitle = 'text-xl';
 
 	$: selectedLocation = {
-		title: 'Lorem ipsum is placeholder',
-		desc: `Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.`,
+		title: '',
+		desc: `Уничтожение ромского население проводилось по всей территории Беларуси, как под гражданским, так и под военным управлением. Наличие мест уничтожения во всех областях современной Беларуси указывает на массовый характер геноцида рома в Беларуси во время немецкой оккупации с 1941 по 1944 годы. Карта мест уничтожения составлена на основании немецких документов, а также актов ЧГК, которые содержат факты уничтожения ромского населения. Архивные документы не всегда дают точное количество жертв, поэтому данные о количестве жертв могут быть приблизительными либо и вовсе отсутствовать.`,
 		coordinates: ['27.561879', '53.902334'],
 		link: '/articles/fuck-the-strapicms',
 		iconUrl: '/images/map/1.png'
@@ -143,7 +143,11 @@
 			<div
 				class=" h-auto w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
-				<h3 class="font-oswald-normal  mb-4 {textTitle}  text-neutral-900">
+				<h3
+					class="font-oswald-normal {selectedLocation.title.length
+						? 'hidden'
+						: ''} mb-4 {textTitle}  text-neutral-900"
+				>
 					{selectedLocation.title}
 				</h3>
 				<p class="font-notoSans-normal limited-text mb-2 h-auto text-sm text-neutral-900">
