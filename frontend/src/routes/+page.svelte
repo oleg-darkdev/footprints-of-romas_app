@@ -1,11 +1,10 @@
 <script>
-	import { LargeCard, MediumCard, SmallCard } from '$lib/entities';
 	import { points } from '$lib/shared';
-	import { Header, Map } from '$lib/widgets';
+	import {  Map } from '$lib/widgets';
 </script>
 
 <header class="w-full bg-white py-6  md:pl-20 lg:pl-20">
-	<h1 class="font-oswald-bold mx-4 max-w-[230px] text-xl leading-snug {textColor} z-10 uppercase">
+	<h1 class="font-oswald-bold mx-4 max-w-[230px] text-xl leading-snug text-neutral-900 z-10 uppercase">
 		Геноцид рома во время Второй мировой войны в Беларуси 1941-1944 гг
 	</h1>
 </header>
