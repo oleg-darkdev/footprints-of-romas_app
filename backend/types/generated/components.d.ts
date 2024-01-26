@@ -1,21 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface ReadMoreReadMore extends Schema.Component {
-  collectionName: 'components_read_more_read_mores';
-  info: {
-    displayName: 'readMore';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-    desc: Attribute.Text &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'>;
-    link: Attribute.String & Attribute.Required & Attribute.DefaultTo<'/'>;
-  };
-}
-
 export interface SourcesList extends Schema.Component {
   collectionName: 'components_sources_lists';
   info: {
@@ -110,7 +94,6 @@ export interface TextElementsRightImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'read-more.read-more': ReadMoreReadMore;
       'sources.list': SourcesList;
       'text-elements.h1': TextElementsH1;
       'text-elements.h2': TextElementsH2;
