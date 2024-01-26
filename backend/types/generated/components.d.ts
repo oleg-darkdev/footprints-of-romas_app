@@ -1,23 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface SourcesList extends Schema.Component {
-  collectionName: 'components_sources_lists';
-  info: {
-    displayName: 'list';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder '>;
-    author: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'author name'>;
-    year: Attribute.BigInteger & Attribute.Required;
-    link: Attribute.String & Attribute.Required & Attribute.DefaultTo<'/'>;
-  };
-}
-
 export interface TextElementsH1 extends Schema.Component {
   collectionName: 'components_text_elements_h1s';
   info: {
@@ -94,7 +76,6 @@ export interface TextElementsRightImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'sources.list': SourcesList;
       'text-elements.h1': TextElementsH1;
       'text-elements.h2': TextElementsH2;
       'text-elements.h3': TextElementsH3;
