@@ -1,19 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface NavNavigation extends Schema.Component {
-  collectionName: 'components_nav_navigations';
-  info: {
-    displayName: 'Navigation';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-    link: Attribute.String & Attribute.Required & Attribute.DefaultTo<'/'>;
-  };
-}
-
 export interface ReadMoreReadMore extends Schema.Component {
   collectionName: 'components_read_more_read_mores';
   info: {
@@ -124,7 +110,6 @@ export interface TextElementsRightImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'nav.navigation': NavNavigation;
       'read-more.read-more': ReadMoreReadMore;
       'sources.list': SourcesList;
       'text-elements.h1': TextElementsH1;

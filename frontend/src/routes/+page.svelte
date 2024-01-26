@@ -85,13 +85,6 @@
 			]
 		}
 	];
-
-	const onlyText = [
-		'Как показывают данные устной истории и этнографии, большинство рома Новогрудского и Виленского воеводств вели кочевой или полукочевой образ жизни, который заключался в договорных отношениях с местными помещиками и крестьянами.',
-		'Исторически, образ жизни и профессия даже кочевых рома в Беларуси были тесно связаны с местной экономикой и обществом.В соседнем БССР, где была запущена программа индустриализации и коллективизации сельского хозяйства, некоторые кочевые рома уже перешли на оседлый образ жизни.',
-		'Как показывают данные устной истории и этнографии, большинство рома Новогрудского и Виленского воеводств вели кочевой или полукочевой образ жизни, который заключался в договорных отношениях с местными помещиками и крестьянами.',
-		'Исторически, образ жизни и профессия даже кочевых рома в Беларуси были тесно связаны с местной экономикой и обществом.В соседнем БССР, где была запущена программа индустриализации и коллективизации сельского хозяйства, некоторые кочевые рома уже перешли на оседлый образ жизни.'
-	];
 </script>
 
 <Header />
@@ -101,24 +94,133 @@
 		class="font-['Noto sans'] prose-2xl prose-blue prose mx-auto w-full max-w-6xl  px-2 py-8 text-justify  lg:px-6 lg:text-left "
 	>
 		<div class="mx-auto w-full ">
-			<ImageTextSection data={textBlocks[0]} />
+			<div class="mx-auto flex w-full flex-wrap items-start py-2 md:px-2 lg:px-2">
+				<div class="w-full  lg:w-1/2 lg:max-w-lg">
+					<div>
+						<div class="relative w-full max-w-lg">
+							<figure class="relative">
+								<img
+									class="mx-auto  object-cover object-center shadow-2xl"
+									alt=""
+									src="https://static01.nyt.com/images/2016/04/21/blogs/21-lens-armenian-slide-FMS2/21-lens-armenian-slide-FMS2-superJumbo.jpg?quality=75&auto=webp&disable=upscale"
+								/>
+								<figcaption
+									class="font-notoSans-medium  w-full text-justify text-sm text-neutral-900  md:text-left     lg:text-left"
+								>
+									Ромские узники в концлагере «Белжец», из архива Мемориального музея истории
+									Холокоста (США)
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</div>
+				<div
+					class=" mt-4 mb-8 flex flex-col items-start text-left md:mb-0 md:pl-6 lg:w-1/2 lg:flex-grow lg:pl-6 "
+				>
+					<span class="font-notoSans-italic  mb-6 leading-8  tracking-tighter  text-neutral-600 ">
+						'В регионе Вильно и Новогрудка, наоборот, образ жизни рома практически не изменился в
+						течении всего межвоенного периода.',
+					</span>
 
-			<div class=" mt-4 mb-8 flex flex-col items-start    md:mb-0 ">
-				{#each onlyText as text}
 					<p
-						class="font-notoSans-medium my-2 text-justify text-xl leading-8 text-gray-700 lg:text-left"
+						class="font-notoSans-medium my-2 text-justify text-base leading-8  text-gray-700 md:text-left lg:text-left"
 					>
-						{text}
+						'Как показывают данные устной истории и этнографии, большинство рома Новогрудского и
+						Виленского воеводств вели кочевой или полукочевой образ жизни, который заключался в
+						договорных отношениях с местными помещиками и крестьянами.',
 					</p>
-				{/each}
+					<p
+						class="font-notoSans-medium my-2 text-justify text-base leading-8  text-gray-700 md:text-left lg:text-left"
+					>
+						'Исторически, образ жизни и профессия даже кочевых рома в Беларуси были тесно связаны с
+						местной экономикой и обществом.В соседнем БССР, где была запущена программа
+						индустриализации и коллективизации сельского хозяйства, некоторые кочевые рома уже
+						перешли на оседлый образ жизни.'
+					</p>
+				</div>
 			</div>
 
-			<ImageTextSection data={textBlocks[1]} />
+			<div class=" mt-4 mb-8 flex flex-col items-start    md:mb-0 ">
+				<p
+					class="font-notoSans-medium my-2 text-justify text-xl leading-8 text-gray-700 lg:text-left"
+				>
+					'Как показывают данные устной истории и этнографии, большинство рома Новогрудского и
+					Виленского воеводств вели кочевой или полукочевой образ жизни, который заключался в
+					договорных отношениях с местными помещиками и крестьянами.',
+				</p>
+				<p
+					class="font-notoSans-medium my-2 text-justify text-xl leading-8 text-gray-700 lg:text-left"
+				>
+					'Исторически, образ жизни и профессия даже кочевых рома в Беларуси были тесно связаны с
+					местной экономикой и обществом.В соседнем БССР, где была запущена программа
+					индустриализации и коллективизации сельского хозяйства, некоторые кочевые рома уже перешли
+					на оседлый образ жизни.',
+				</p>
+				<p
+					class="font-notoSans-medium my-2 text-justify text-xl leading-8 text-gray-700 lg:text-left"
+				>
+					'Как показывают данные устной истории и этнографии, большинство рома Новогрудского и
+					Виленского воеводств вели кочевой или полукочевой образ жизни, который заключался в
+					договорных отношениях с местными помещиками и крестьянами.',
+				</p>
+				<p
+					class="font-notoSans-medium my-2 text-justify text-xl leading-8 text-gray-700 lg:text-left"
+				>
+					'Исторически, образ жизни и профессия даже кочевых рома в Беларуси были тесно связаны с
+					местной экономикой и обществом.В соседнем БССР, где была запущена программа
+					индустриализации и коллективизации сельского хозяйства, некоторые кочевые рома уже перешли
+					на оседлый образ жизни.'
+				</p>
+			</div>
+
+			<div class="mx-auto flex w-full flex-wrap items-start py-2 md:px-2 lg:px-2">
+				<div class="w-full  lg:w-1/2 lg:max-w-lg">
+					<div>
+						<div class="relative w-full max-w-lg">
+							<figure class="relative">
+								<img
+									class="mx-auto  object-cover object-center shadow-2xl"
+									alt=""
+									src="https://static01.nyt.com/images/2016/04/21/blogs/21-lens-armenian-slide-FMS2/21-lens-armenian-slide-FMS2-superJumbo.jpg?quality=75&auto=webp&disable=upscale"
+								/>
+								<figcaption
+									class="font-notoSans-medium  w-full text-justify text-sm text-neutral-900  md:text-left     lg:text-left"
+								>
+									Ромские узники в концлагере «Белжец», из архива Мемориального музея истории
+									Холокоста (США)
+								</figcaption>
+							</figure>
+						</div>
+					</div>
+				</div>
+				<div
+					class=" mt-4 mb-8 flex flex-col items-start text-left md:mb-0 md:pl-6 lg:w-1/2 lg:flex-grow lg:pl-6 "
+				>
+					<span class="font-notoSans-italic  mb-6 leading-8  tracking-tighter  text-neutral-600 ">
+						'В регионе Вильно и Новогрудка, наоборот, образ жизни рома практически не изменился в
+						течении всего межвоенного периода.',
+					</span>
+
+					<p
+						class="font-notoSans-medium my-2 text-justify text-base leading-8  text-gray-700 md:text-left lg:text-left"
+					>
+						'Как показывают данные устной истории и этнографии, большинство рома Новогрудского и
+						Виленского воеводств вели кочевой или полукочевой образ жизни, который заключался в
+						договорных отношениях с местными помещиками и крестьянами.',
+					</p>
+					<p
+						class="font-notoSans-medium my-2 text-justify text-base leading-8  text-gray-700 md:text-left lg:text-left"
+					>
+						'Исторически, образ жизни и профессия даже кочевых рома в Беларуси были тесно связаны с
+						местной экономикой и обществом.В соседнем БССР, где была запущена программа
+						индустриализации и коллективизации сельского хозяйства, некоторые кочевые рома уже
+						перешли на оседлый образ жизни.'
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 </section>
-
-
 
 <section class="bg-gray-200 py-6 px-2">
 	<div class="mx-auto flex  max-w-7xl flex-col">
