@@ -1,31 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface TextElementsH2 extends Schema.Component {
-  collectionName: 'components_text_elements_h2s';
-  info: {
-    displayName: 'H2';
-    description: '';
-  };
-  attributes: {
-    h2: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-  };
-}
-
-export interface TextElementsH3 extends Schema.Component {
-  collectionName: 'components_text_elements_h3s';
-  info: {
-    displayName: 'H3';
-    description: '';
-  };
-  attributes: {
-    h3: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-  };
-}
-
 export interface TextElementsP extends Schema.Component {
   collectionName: 'components_text_elements_ps';
   info: {
@@ -63,8 +37,6 @@ export interface TextElementsRightImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'text-elements.h2': TextElementsH2;
-      'text-elements.h3': TextElementsH3;
       'text-elements.p': TextElementsP;
       'text-elements.right-image': TextElementsRightImage;
     }

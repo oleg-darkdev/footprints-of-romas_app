@@ -324,7 +324,7 @@
 
 				// map.addImage('custom-marker', image);
 
-				points.forEach((point) => {
+				locations.forEach((point) => {
 					const customIcon = document.createElement('div');
 					customIcon.className = 'custom-marker';
 
@@ -683,7 +683,7 @@
 			<div
 				class="list flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:max-h-[600px] lg:max-h-[600px]"
 			>
-				{#each points as location, i}
+				{#each locations as location, i}
 					<div
 						on:click={() => {
 							handleMarkerClick(location);
