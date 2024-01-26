@@ -4,7 +4,8 @@
   "info": {
     "singularName": "roma",
     "pluralName": "romas",
-    "displayName": "roma"
+    "displayName": "roma",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -45,17 +46,6 @@
     "latitude": {
       "type": "float",
       "required": true
-    },
-    "sections": {
-      "type": "dynamiczone",
-      "components": [
-        "date-components.date-numbers",
-        "text-elements.h1",
-        "text-elements.h2",
-        "text-elements.h3",
-        "text-elements.p",
-        "text-elements.right-image"
-      ]
     }
   }
 }

@@ -9,10 +9,6 @@
 	onMount(() => {
 		window.innerWidth <= 490 ? (isMobile = 'sm') : (isMobile = 'md');
 
-		// {
-		// 	selectedLocation.title.length < 2 ? console.log('hidden') : '';
-		// }
-
 		mapboxgl.accessToken =
 			'pk.eyJ1Ijoic3RyYXBpLXVzZXIiLCJhIjoiY2xwZTV2YmRrMTk4ejJocmxrN3pqbGEzdCJ9.MQGuqEAPP3qrwfix8Cb--Q';
 

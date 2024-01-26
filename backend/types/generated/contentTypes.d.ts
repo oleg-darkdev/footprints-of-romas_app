@@ -362,111 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiArticleArticle extends Schema.CollectionType {
-  collectionName: 'articles';
-  info: {
-    singularName: 'article';
-    pluralName: 'articles';
-    displayName: 'article';
-    description: '';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    nav: Attribute.Component<'nav.navigation', true>;
-    timeline: Attribute.Component<'date-components.timeline', true>;
-    sourceList: Attribute.Component<'sources.list', true>;
-    readMore: Attribute.Component<'read-more.read-more'>;
-    titleArticle: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'title-link-example'>;
-    sections: Attribute.DynamicZone<
-      [
-        'date-components.date-numbers',
-        'nav.anchor',
-        'text-elements.h1',
-        'text-elements.h2',
-        'text-elements.h3',
-        'text-elements.p',
-        'text-elements.right-image',
-        'images.images'
-      ]
-    >;
-    timeToRead: Attribute.BigInteger &
-      Attribute.Required &
-      Attribute.DefaultTo<'1'>;
-    slug: Attribute.UID & Attribute.Required;
-    banner: Attribute.Media & Attribute.Required;
-    shortDesc: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing.'>;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::article.article',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiRomaRoma extends Schema.CollectionType {
-  collectionName: 'romas';
-  info: {
-    singularName: 'roma';
-    pluralName: 'romas';
-    displayName: 'roma';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    name: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder '>;
-    surname: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-    shortDesc: Attribute.Text &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 350;
-      }> &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'>;
-    slug: Attribute.String & Attribute.Required;
-    birthDate: Attribute.Date;
-    deathDate: Attribute.Date & Attribute.Required;
-    longitude: Attribute.Float & Attribute.Required;
-    latitude: Attribute.Float & Attribute.Required;
-    sections: Attribute.DynamicZone<
-      [
-        'date-components.date-numbers',
-        'text-elements.h1',
-        'text-elements.h2',
-        'text-elements.h3',
-        'text-elements.p',
-        'text-elements.right-image'
-      ]
-    >;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<'api::roma.roma', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<'api::roma.roma', 'oneToOne', 'admin::user'> &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -782,6 +677,84 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiArticleArticle extends Schema.CollectionType {
+  collectionName: 'articles';
+  info: {
+    singularName: 'article';
+    pluralName: 'articles';
+    displayName: 'article';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::article.article',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRomaRoma extends Schema.CollectionType {
+  collectionName: 'romas';
+  info: {
+    singularName: 'roma';
+    pluralName: 'romas';
+    displayName: 'roma';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'Lorem ipsum is placeholder '>;
+    surname: Attribute.String &
+      Attribute.Required &
+      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
+    shortDesc: Attribute.Text &
+      Attribute.Required &
+      Attribute.SetMinMaxLength<{
+        maxLength: 350;
+      }> &
+      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'>;
+    slug: Attribute.String & Attribute.Required;
+    birthDate: Attribute.Date;
+    deathDate: Attribute.Date & Attribute.Required;
+    longitude: Attribute.Float & Attribute.Required;
+    latitude: Attribute.Float & Attribute.Required;
+    sections: Attribute.DynamicZone<
+      [
+        'date-components.date-numbers',
+        'text-elements.h1',
+        'text-elements.h2',
+        'text-elements.h3',
+        'text-elements.p',
+        'text-elements.right-image'
+      ]
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::roma.roma', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::roma.roma', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -792,14 +765,14 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::article.article': ApiArticleArticle;
-      'api::roma.roma': ApiRomaRoma;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::i18n.locale': PluginI18NLocale;
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::article.article': ApiArticleArticle;
+      'api::roma.roma': ApiRomaRoma;
     }
   }
 }
