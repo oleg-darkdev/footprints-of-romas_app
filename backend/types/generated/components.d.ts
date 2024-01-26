@@ -1,51 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface HeroArticleHero extends Schema.Component {
-  collectionName: 'components_hero_article_heroes';
-  info: {
-    displayName: 'article-hero';
-    description: '';
-  };
-  attributes: {
-    banner: Attribute.Media & Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.SetMinMaxLength<{
-        maxLength: 130;
-      }> &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic.'>;
-  };
-}
-
-export interface ImagesImages extends Schema.Component {
-  collectionName: 'components_images_images';
-  info: {
-    displayName: 'images';
-    description: '';
-  };
-  attributes: {
-    image: Attribute.Media & Attribute.Required;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-    caption: Attribute.Text &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries.'>;
-  };
-}
-
-export interface NavAnchor extends Schema.Component {
-  collectionName: 'components_nav_anchors';
-  info: {
-    displayName: 'Anchor';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'lorem#1'>;
-  };
-}
-
 export interface NavNavigation extends Schema.Component {
   collectionName: 'components_nav_navigations';
   info: {
@@ -170,9 +124,6 @@ export interface TextElementsRightImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'hero.article-hero': HeroArticleHero;
-      'images.images': ImagesImages;
-      'nav.anchor': NavAnchor;
       'nav.navigation': NavNavigation;
       'read-more.read-more': ReadMoreReadMore;
       'sources.list': SourcesList;

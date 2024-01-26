@@ -118,18 +118,116 @@
 	</div>
 </section>
 
-<EventsSection title="новости" bg="bg-gray-200">
-	<LargeCard data={newsList[0]} />
 
-	{#each newsList.splice(1, newsList.length) as data}
-		<MediumCard {data} />
-	{/each}
-</EventsSection>
 
-<EventsSection title="мероприятия" bg="bg-gray-300">
-	{#each eventsList as data}
-		<SmallCard {data} />
-	{/each}
-</EventsSection>
+<section class="bg-gray-200 py-6 px-2">
+	<div class="mx-auto flex  max-w-7xl flex-col">
+		<div class="md:px-6 lg:px-8 ">
+			<h2 class="font-oswald-normal text-2xl uppercase text-neutral-900">новости</h2>
+			<hr class="mb-6 h-1 border-0 bg-neutral-900 " />
+		</div>
+
+		<div style="justify-content: space-between;" class="flex flex-row flex-wrap md:px-6 lg:px-8  ">
+			<a
+				href="/"
+				class=" my-2 mb-12 flex w-full  cursor-pointer flex-col  overflow-hidden  bg-white hover:bg-neutral-100  lg:h-[350px] lg:flex-row "
+			>
+				<!-- font-oswald-medium  font-notoSans-normal -->
+
+				<img
+					class=" h-96  object-cover md:h-auto  md:w-48 md:rounded-none  lg:w-[460px]"
+					src="https://media.cnn.com/api/v1/images/stellar/prod/111229095637-9-11-memorial.jpg?q=x_0,y_199,h_1968,w_3499,c_crop/h_653,w_1160/f_webp"
+					alt=""
+				/>
+
+				<div class="flex h-full  flex-col justify-between py-6 px-4">
+					<div class="font-notoSans-normal  mb-6 flex  space-x-1 text-xs text-neutral-700">
+						<time datetime="03 АВГУСТА 2021, 10:51"> '03 АВГУСТА 2021, 10:51' </time>
+						<span aria-hidden="true"> · </span>
+					</div>
+					<div class="mt-2 block flex  flex-col">
+						<hr class="mb-6 h-1 border-0 bg-neutral-900 " />
+
+						<h3 class="font-oswald-normal  mb-6 text-2xl leading-8  text-neutral-900">
+							'Выставочная экспозиция "Кто ты, народ рома?" откроется в Борисове 10 августа'
+						</h3>
+						<p class="font-notoSans-normal text-sm  text-neutral-700">
+							'Выставочная экспозиция "Кто ты, народ рома?" откроется в Борисовской центральной
+							районной библиотеке им. И.Х.Колодеева 10 августа. Об этом корреспонденту БЕЛТА
+							рассказала директор учреждения Елена Копыток...'
+						</p>
+					</div>
+				</div>
+			</a>
+
+			<a
+				href="/"
+				class=" my-4 mb-12 flex  cursor-pointer flex-col  overflow-hidden  bg-white hover:bg-neutral-100  md:max-w-xl lg:h-[350px] lg:flex-row "
+			>
+				<img
+					class=" h-96  w-auto  object-cover md:h-auto md:w-48 md:rounded-none"
+					src="https://media.cnn.com/api/v1/images/stellar/prod/111229095637-9-11-memorial.jpg?q=x_0,y_199,h_1968,w_3499,c_crop/h_653,w_1160/f_webp"
+					alt=""
+				/>
+
+				<div class="flex h-full   w-auto flex-col justify-between py-6 px-4">
+					<div class="font-notoSans-normal  mb-6 flex  space-x-1 text-xs text-neutral-700">
+						<time datetime="03 АВГУСТА 2021, 10:51"> '03 АВГУСТА 2021, 10:51"</time>
+						<span aria-hidden="true"> · </span>
+					</div>
+					<div class="mt-2 block flex  flex-col">
+						<hr class="mb-6 h-1 border-0 bg-neutral-900 " />
+
+						<h3 class="font-oswald-normal text-xl leading-8 tracking-wide text-neutral-900">
+							'Выставочная экспозиция "Кто ты, народ рома?" откроется в Борисове 10 августа'
+						</h3>
+					</div>
+				</div>
+			</a>
+		</div>
+	</div>
+</section>
+
+<section class="bg-gray-300 py-6 px-2">
+	<div class="mx-auto flex  max-w-7xl flex-col">
+		<div class="md:px-6 lg:px-8 ">
+			<h2 class="font-oswald-normal text-2xl uppercase text-neutral-900">мероприятия</h2>
+			<hr class="mb-6 h-1 border-0 bg-neutral-900 " />
+		</div>
+
+		<div style="justify-content: space-between;" class="flex flex-row flex-wrap md:px-6 lg:px-8  ">
+			<div
+				class=" my-4  mb-12 flex h-[500px] cursor-pointer  flex-col overflow-hidden bg-white hover:bg-neutral-100 md:max-w-sm"
+			>
+				<div class="flex-shrink-0 ">
+					<img
+						class="h-48 w-full  object-cover"
+						src="https://media.cnn.com/api/v1/images/stellar/prod/111229095637-9-11-memorial.jpg?q=x_0,y_199,h_1968,w_3499,c_crop/h_653,w_1160/f_webp"
+						alt=""
+					/>
+				</div>
+
+				<!-- 'Выставочная экспозиция "Кто ты, народ рома?" откроется в Борисовской центральной районной библиотеке им. И.Х.Колодеева 10 августа. Об этом корреспонденту БЕЛТА рассказала директор учреждения Елена Копыток...' -->
+				<div class="flex flex-1 flex-col justify-between px-4 py-6">
+					<div class="flex flex-1 flex-col justify-between  ">
+						<a href="/" class="">
+							<div class="font-notoSans-normal  mb-6 flex  space-x-1 text-xs text-neutral-700">
+								<time datetime="03 АВГУСТА 2021, 10:51"> '03 АВГУСТА 2021, 10:51"</time>
+								<span aria-hidden="true"> · </span>
+							</div>
+						</a>
+						<a href="/" class="mt-2 block w-10/12 space-y-6">
+							<h3 class="font-oswald-normal text-xl leading-8 tracking-wide text-neutral-900">
+								'Выставочная экспозиция "Кто ты, народ рома?" откроется в Борисове 10 августа'
+							</h3>
+
+							<hr class="mb-6 h-1 border-0 bg-neutral-900 " />
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
 
 <Map {points} />
