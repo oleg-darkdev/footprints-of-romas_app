@@ -1,18 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface TextElementsH1 extends Schema.Component {
-  collectionName: 'components_text_elements_h1s';
-  info: {
-    displayName: 'H1';
-    description: '';
-  };
-  attributes: {
-    h1: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-  };
-}
-
 export interface TextElementsH2 extends Schema.Component {
   collectionName: 'components_text_elements_h2s';
   info: {
@@ -76,7 +63,6 @@ export interface TextElementsRightImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'text-elements.h1': TextElementsH1;
       'text-elements.h2': TextElementsH2;
       'text-elements.h3': TextElementsH3;
       'text-elements.p': TextElementsP;
