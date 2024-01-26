@@ -1,5 +1,5 @@
 <!-- <script>
-	import { SocialLinks, Footer } from '../../lib/widgets';
+	import { SocialLinks, Footer } from '$lib/widgets';
 </script>
 
 <slot />

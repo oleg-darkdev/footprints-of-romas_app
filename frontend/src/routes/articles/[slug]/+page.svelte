@@ -1,17 +1,17 @@
-<!-- <script>
-	import {
-		PageNavigation,
-		DateTextBlock,
-		StandartSection,
-		ImageTextBlock,
-		Hero,
-		HeaderApp,
-		SourcesList,
-		Timeline,
-		ReadMore,
-		LoadingScreen
-	} from '../../../lib/widgets';
-	import { H1, H2, H3, P, Anchor, BigImg } from '../../../lib/shared';
+<script>
+	// import {
+	// 	PageNavigation,
+	// 	DateTextBlock,
+	// 	StandartSection,
+	// 	ImageTextBlock,
+	// 	Hero,
+	// 	HeaderApp,
+	// 	SourcesList,
+	// 	Timeline,
+	// 	ReadMore,
+	// 	LoadingScreen
+	// } from '$lib/widgets';
+	// import { H1, H2, H3, P, Anchor, BigImg } from '$lib/shared';
 
 	import { page } from '$app/stores';
 
@@ -51,9 +51,11 @@
 	async function fetchDataArtcile() {
 		try {
 			response = await axios.get(
-				`${apiUrl}/articles?filters\[slug]\[$eq]=${$page.params.slug}&populate=deep`
+				`${apiUrl}/articles`
 			);
 			articleData = response.data.data[0].attributes;
+      console.log(response.data.data[0].attributes);
+      // 				`${apiUrl}/articles?filters\[slug]\[$eq]=${$page.params.slug}&populate=deep`
 
 			// console.log($page.params.slug);
 
@@ -76,7 +78,7 @@
 		fetchDataArtcile();
 	});
 </script>
-
+<!--
 <LoadingScreen {error} {response}>
 	<Hero {banner} />
 
