@@ -1,65 +1,5 @@
 import type { Schema, Attribute } from '@strapi/strapi';
 
-export interface DateComponentsDateNumbers extends Schema.Component {
-  collectionName: 'components_date_components_date_numbers';
-  info: {
-    displayName: 'CalendarDay';
-    description: '';
-  };
-  attributes: {
-    day: Attribute.Integer & Attribute.Required & Attribute.DefaultTo<5>;
-    month: Attribute.Enumeration<
-      [
-        '\u044F\u043D\u0432\u0430\u0440\u044C',
-        '\u0444\u0435\u0432\u0440\u0430\u043B\u044C',
-        '\u043C\u0430\u0440\u0442',
-        '\u0430\u043F\u0440\u0435\u043B\u044C',
-        '\u043C\u0430\u0439',
-        '\u0438\u044E\u043D\u044C',
-        '\u0438\u044E\u043B\u044C',
-        '\u0430\u0432\u0433\u0443\u0441\u0442',
-        '\u0441\u0435\u043D\u0442\u044F\u0431\u0440\u044C',
-        '\u043E\u043A\u0442\u044F\u0431\u0440\u044C',
-        '\u043D\u043E\u044F\u0431\u0440\u044C',
-        '\u0434\u0435\u043A\u0430\u0431\u0440\u044C'
-      ]
-    > &
-      Attribute.Required &
-      Attribute.DefaultTo<'\u044F\u043D\u0432\u0430\u0440\u044C'>;
-    subTitle: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum'>;
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum'>;
-    desc: Attribute.Text &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'>;
-    readMore: Attribute.Component<'read-more.read-more'>;
-    sourcesList: Attribute.Component<'sources.list'>;
-    timeline: Attribute.Component<'date-components.timeline'>;
-  };
-}
-
-export interface DateComponentsTimeline extends Schema.Component {
-  collectionName: 'components_date_components_timelines';
-  info: {
-    displayName: 'Timeline';
-    description: '';
-  };
-  attributes: {
-    title: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder'>;
-    desc: Attribute.String &
-      Attribute.Required &
-      Attribute.DefaultTo<'Lorem ipsum is placeholder text commonly used in the graphic, print, and publishing industries for previewing layouts and visual mockups.'>;
-    date: Attribute.Date &
-      Attribute.Required &
-      Attribute.DefaultTo<'2023-11-16'>;
-  };
-}
-
 export interface HeroArticleHero extends Schema.Component {
   collectionName: 'components_hero_article_heroes';
   info: {
@@ -230,8 +170,6 @@ export interface TextElementsRightImage extends Schema.Component {
 declare module '@strapi/types' {
   export module Shared {
     export interface Components {
-      'date-components.date-numbers': DateComponentsDateNumbers;
-      'date-components.timeline': DateComponentsTimeline;
       'hero.article-hero': HeroArticleHero;
       'images.images': ImagesImages;
       'nav.anchor': NavAnchor;
