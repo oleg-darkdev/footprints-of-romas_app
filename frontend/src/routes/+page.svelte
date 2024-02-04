@@ -255,13 +255,13 @@
 			coordinates: [30.638089478331764, 54.183101218723074],
 			link: '/articles/fuck-the-strapicms'
 		},
-    	{
+		{
 			title: 'Железнодорожный район, Гомель',
 			desc: 'В поименном списке жертв оккупантов по Железнодорожному району г. Гомеля упоминаются 17 ромов, убитых в 1943 г. ',
 			coordinates: [],
 			link: '/articles/fuck-the-strapicms'
 		},
-    {
+		{
 			title: 'Бобруйск',
 			desc: 'Борис Завицкий в детстве кочевал по Беларуси. Со слов знакомого рома Николая Малиновского он узнал о расстреле на берегу реки Бобруйка под Бобруйском. Оказалось, кочевые ромы укрывали советских офицеров. Военных переодели, но их форму не сожгли, потому что ткань была хорошего качества. Из-за этой одежды табор и погиб, причем расстреляны были все поголовно, вплоть до детей. Б. Завицкий видел братскую могилу на глинистом берегу и слышал подтверждение этой истории от местных жителей.',
 			coordinates: [],
@@ -343,6 +343,8 @@
 	});
 
 	function handleMarkerClick(point) {
+		console.log('click');
+		console.log(point);
 		selectedLocation = point;
 		shortDesc = `${selectedLocation.desc.slice(0, 130)}...`;
 
@@ -654,13 +656,9 @@
 		</div> -->
 		{#if !showFull}
 			<div
-				class=" w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
+				class=" h-full w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
-				<h3
-					class="font-oswald-normal {selectedLocation.title.length
-						? 'hidden'
-						: ''} mb-4 {textTitle}  text-neutral-900"
-				>
+				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
 				</h3>
 				<p class="font-notoSans-normal limited-text mb-2 h-auto text-dimInHuj text-neutral-900">
@@ -683,7 +681,7 @@
 				</div>
 			</div>
 			<div
-				class="list flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 h-full "
+				class="list flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:max-h-[600px] lg:max-h-[600px]"
 			>
 				{#each locations as location, i}
 					<div

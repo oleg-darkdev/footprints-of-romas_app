@@ -341,6 +341,8 @@
 	});
 
 	function handleMarkerClick(point) {
+    console.log('click');
+    console.log(point);
 		selectedLocation = point;
 		shortDesc = `${selectedLocation.desc.slice(0, 130)}...`;
 
@@ -403,11 +405,7 @@
 			<div
 				class=" h-full w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
-				<h3
-					class="font-oswald-normal {selectedLocation.title.length
-						? 'hidden'
-						: ''} mb-4 {textTitle}  text-neutral-900"
-				>
+				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
 				</h3>
 				<p class="font-notoSans-normal limited-text mb-2 h-auto text-dimInHuj text-neutral-900">
