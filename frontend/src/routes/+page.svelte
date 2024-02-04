@@ -661,7 +661,11 @@
 				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
 				</h3>
-				<p class="font-notoSans-normal limited-text mb-2 h-auto text-dimInHuj text-neutral-900">
+				<p
+					class="font-notoSans-normal mb-2  h-auto text-dimInHuj {selectedLocation.desc.length > 581
+						? ''
+						: 'limited-text'} text-neutral-900"
+				>
 					{selectedLocation.desc}
 				</p>
 

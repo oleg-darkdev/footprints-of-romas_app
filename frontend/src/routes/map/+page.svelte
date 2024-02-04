@@ -341,8 +341,7 @@
 	});
 
 	function handleMarkerClick(point) {
-    console.log('click');
-    console.log(point);
+	
 		selectedLocation = point;
 		shortDesc = `${selectedLocation.desc.slice(0, 130)}...`;
 
@@ -408,11 +407,15 @@
 				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
 				</h3>
-				<p class="font-notoSans-normal limited-text mb-2 h-auto text-dimInHuj text-neutral-900">
+				<p
+					class="font-notoSans-normal mb-2  h-auto text-dimInHuj {selectedLocation.desc.length > 581
+						? ''
+						: 'limited-text'} text-neutral-900"
+				>
 					{selectedLocation.desc}
 				</p>
 
-				<div class="flex flex-row flex-wrap {selectedLocation.title.length ? 'mb-8' : 'pb-2'}  ">
+				<div class="flex flex-row flex-wrap {selectedLocation.title.length ? 'mb-8' : 'pb-4'}  ">
 					{#if selectedLocation.title.length}
 						<button
 							class="mb-6 flex h-12 w-full flex-row items-center justify-center rounded-md border-2 border-neutral-900 py-2 px-4 text-center text-sm text-neutral-900 "
