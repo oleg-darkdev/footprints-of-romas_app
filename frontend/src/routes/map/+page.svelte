@@ -341,7 +341,7 @@
 	});
 
 	function handleMarkerClick(point) {
-	
+
 		selectedLocation = point;
 		shortDesc = `${selectedLocation.desc.slice(0, 130)}...`;
 
@@ -431,7 +431,7 @@
 				</div>
 			</div>
 			<div
-				class="list flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:max-h-[600px] lg:max-h-[600px]"
+				class="list md:h-full flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 points xl:max-h-[600px]"
 			>
 				{#each locations as location, i}
 					<div
@@ -517,6 +517,11 @@
 		.list {
 			display: none;
 		}
+
+
+    .points {
+      max-height: 100%;
+    }
 	}
 
 	.limited-text {

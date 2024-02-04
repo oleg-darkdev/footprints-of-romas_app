@@ -656,7 +656,7 @@
 		</div> -->
 		{#if !showFull}
 			<div
-				class=" h-full w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
+				class="w-full bg-neutral-100 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4  lg:px-4  "
 			>
 				<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
 					{selectedLocation.title}
@@ -685,7 +685,7 @@
 				</div>
 			</div>
 			<div
-				class="list flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:max-h-[600px] lg:max-h-[600px]"
+				class="list md:h-full flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 points xl:max-h-[600px]"
 			>
 				{#each locations as location, i}
 					<div
@@ -771,6 +771,10 @@
 		.list {
 			display: none;
 		}
+
+    .points {
+      max-height: 100%;
+    }
 	}
 
 	.limited-text {
