@@ -18,7 +18,7 @@
 
 <style>
 	/* noto-sans */
-	:global(.font-notoSans-normal) {
+	/* :global(.font-notoSans-normal) {
 		font-family: 'Noto-sans';
 		font-style: normal;
 	}
@@ -37,7 +37,7 @@
 	:global(.font-notoSans-semiBold) {
 		font-family: 'Noto-sans';
 		font-style: semiBold;
-	}
+	} */
 
 	@font-face {
 		font-family: 'Noto-sans';
