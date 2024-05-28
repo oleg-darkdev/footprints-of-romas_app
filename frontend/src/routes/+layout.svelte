@@ -12,7 +12,7 @@
 	});
 </script>
 
-<main class="bg-neutral-200">
+<main class="bg-[#dc2626] overfow-hidden ">
 	<slot />
 </main>
 
