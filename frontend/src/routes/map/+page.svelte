@@ -341,7 +341,6 @@
 	});
 
 	function handleMarkerClick(point) {
-
 		selectedLocation = point;
 		shortDesc = `${selectedLocation.desc.slice(0, 130)}...`;
 
@@ -431,7 +430,7 @@
 				</div>
 			</div>
 			<div
-				class="list md:h-full flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 points xl:max-h-[600px]"
+				class="list points flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:h-full xl:max-h-[600px]"
 			>
 				{#each locations as location, i}
 					<div
@@ -440,7 +439,7 @@
 							showLocationIndex = i;
 						}}
 						class="  mx-auto mb-1 flex w-full flex-row  items-center     {showLocationIndex == i
-							? 'rounded-md  border-b-2 border-gray-700 bg-rose-700'
+							? 'rounded-md  border-b-2 border-gray-700 bg-[#e83611]'
 							: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700  bg-neutral-300 transition ease-in-out hover:-translate-y-1 hover:rounded-md  hover:bg-white   hover:shadow-lg'}  py-5 px-4  "
 					>
 						<img
@@ -518,10 +517,9 @@
 			display: none;
 		}
 
-
-    .points {
-      max-height: 100%;
-    }
+		.points {
+			max-height: 100%;
+		}
 	}
 
 	.limited-text {

@@ -1,6 +1,6 @@
 <script>
 	import AOS from 'aos';
-  
+
 	import 'aos/dist/aos.css';
 	import '../leafletCustom.css';
 	import '../mapbox.css';
@@ -12,7 +12,7 @@
 	});
 </script>
 
-<main class="">
+<main class="bg-neutral-200">
 	<slot />
 </main>
 
