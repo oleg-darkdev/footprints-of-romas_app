@@ -1,16 +1,27 @@
 <script>
 	import { locations } from '$lib/shared';
-
 	import { onMount } from 'svelte';
 	import mapboxgl from 'mapbox-gl';
 
 	let map;
 	$: isMobile = false;
 
+  let showContent = false;
 	onMount(() => {
-		window.innerWidth <= 490 ? (isMobile = 'sm') : (isMobile = 'md');
+        function hideHero() {
+        var heroElement = document.querySelector('.hero');
+        if (heroElement) {
+            heroElement.classList.add('slide-right');
+        }
+    }
 
-		mapboxgl.accessToken =
+    function hide() {
+        var heroElement = document.querySelector('.hero');
+        if (heroElement) {
+            heroElement.style.display = 'none';
+        }
+
+mapboxgl.accessToken =
 			'pk.eyJ1Ijoic3RyYXBpLXVzZXIiLCJhIjoiY2xwZTV2YmRrMTk4ejJocmxrN3pqbGEzdCJ9.MQGuqEAPP3qrwfix8Cb--Q';
 
 		map = new mapboxgl.Map({
@@ -43,7 +54,17 @@
 						});
 				});
 			});
-		});
+		});    }
+
+    setTimeout(hideHero, 2800);
+    setTimeout(hide, 5000);
+
+
+
+
+		window.innerWidth <= 490 ? (isMobile = 'sm') : (isMobile = 'md');
+
+		
 	});
 
 	function handleMarkerClick(point) {
@@ -82,30 +103,40 @@
 	let showFull = false;
 
 	$: shortDesc = 'Tap on any point on the map.';
+
+
 </script>
 
-<header class="h-[75vh] w-full border-b-8  border-[#e83611] bg-[#292828]  pt-10">
+<section class=" hero h-screen w-full bg-[#292828]">
+	<div id="container" class='w-full'>
+		<div class="wrap w-full">
+			<div class="footprint  z-10 h-40 w-96 mb-20">
+				<img src="/images/right-shoes.svg" class='w-full h-full' alt="footprintLeft" />
+			</div>
+			<div class="footprint right  z-10 h-40 w-96">
+				<img src="/images/right-shoes.svg" class='w-full h-full' alt="footprintRight" />
+			</div>
+		</div>
+	</div>
+</section>
+
+
+<header class:hidden={showContent} class="h-[75vh] border-[#dc2626] bg-[#292828] w-full border-b-8 pt-10">
 	<div class="mx-auto max-w-3xl">
 		<div class="container flex flex-row items-center justify-center">
 			<img src="/logos/logo.svg" class=" h-32" alt="" />
 			<h2 class="logo">Footprints of Romas</h2>
 		</div>
-		<!-- : <br /> <br /> Map of Romas Repressions in Belarus -->
 	</div>
-	<div class="mx-auto  max-w-7xl px-4 sm:px-6 md:px-12   ">
+	<div class="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
 		<div class="mb-12 flex w-full flex-col text-center">
-			<!-- <h1 class="max-w-5xl text-2xl font-bold leading-none tracking-tighter text-neutral-600 md:text-5xl lg:text-6xl lg:max-w-7xl">
-        Long headline to turn <br class="hidden lg:block">
-        your visitors into users
-      </h1> -->
-
-			<p class="mx-auto max-w-xl   text-center text-base leading-relaxed text-gray-200">
+			<p class="mx-auto max-w-xl text-center text-base leading-relaxed text-gray-200">
 				Исследовательский проект, представленный в виде интерактивной карты, на которой отмечены
 				места репрессий ромов в Беларуси в период Второй мировой войны.
 			</p>
 
 			<a
-				class="mx-auto mt-8 text-sm font-semibold text-[#e83611] hover:text-neutral-400"
+				class="text-[#e83611] mx-auto mt-8 text-sm font-semibold hover:text-neutral-400"
 				title="read more"
 			>
 				Подробнее о истории ром в Беларуси »
@@ -120,13 +151,14 @@
 	</h1> -->
 </header>
 
-<section class="-mt-40  flex min-h-screen flex-col pb-20 md:flex-col lg:flex-row">
-	<div class="mx-auto  flex w-10/12 flex-row">
+
+<section class:hidden={showContent} class="-mb-64 -mt-40 flex min-h-screen flex-col pb-20 md:flex-col  lg:flex-row">
+	<div class="mx-auto flex w-10/12 flex-row">
 		<div
 			id="map"
 			class="{isMobile == 'sm' && showFull
 				? 'hidden'
-				: ''} z-2 rounded-l-box h-full w-full  md:h-screen  lg:h-screen "
+				: ''} z-2 rounded-l-box h-full w-full md:h-screen lg:h-screen"
 		>
 			<!-- <div class="absolute top-8 left-4 h-auto max-w-sm">
 				<h1
@@ -137,7 +169,7 @@
 			</div> -->
 		</div>
 
-		<div class="rounded-tr-box flex h-auto  flex-col bg-neutral-200 lg:h-screen ">
+		<div class="rounded-tr-box flex h-auto flex-col bg-neutral-200 lg:h-screen">
 			<!-- <div class="flex lg:h-40 md:h-40 h-20 w-full items-center justify-center bg-black bg-neutral-900 py-6 lg:px-4 md:px-4 px-2">
 			<h3 class="font-oswald-normal text-md uppercase md:text-xl lg:text-xl ">
 				Места уничтожения рома
@@ -145,13 +177,13 @@
 		</div> -->
 			{#if !showFull}
 				<div
-					class="rounded-tr-box max-w-[400px] bg-red-600  px-8 pt-10 text-neutral-900 shadow-2xl md:px-4 lg:max-w-[500px]  lg:px-4  "
+					class="max-w-[400px] lg:max-w-[500px] rounded-tr-box bg-neutral-200 px-8 pt-10 text-neutral-900 shadow-2xl md:px-4 lg:px-4"
 				>
-					<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
+					<h3 class="font-oswald-normal mb-4 {textTitle} text-neutral-900">
 						{selectedLocation.title}
 					</h3>
 					<p
-						class="font-notoSans-normal mb-2  h-auto text-dimInHuj {selectedLocation.desc.length >
+						class="font-notoSans-normal mb-2 h-auto text-dimInHuj {selectedLocation.desc.length >
 						581
 							? ''
 							: 'limited-text'} text-neutral-900"
@@ -162,7 +194,7 @@
 					<div class="flex flex-row flex-wrap {selectedLocation.title.length ? 'mb-8' : 'pb-2'}  ">
 						{#if selectedLocation.title.length}
 							<button
-								class="mb-6 flex h-12 w-full flex-row items-center justify-center rounded-md border-2 border-neutral-900 py-2 px-4 text-center text-sm text-neutral-900 "
+								class="mb-6 flex h-12 w-full flex-row items-center justify-center rounded-md border-2 border-neutral-900 px-4 py-2 text-center text-sm text-neutral-900"
 								on:click={() => {
 									showFull = !showFull;
 								}}
@@ -175,7 +207,7 @@
 					</div>
 				</div>
 				<div
-					class="list points   flex  max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-6 py-4 px-4 py-2 md:h-full xl:max-h-[600px]"
+					class="list points xl:max-h-[600px] flex max-w-sm flex-col items-center overflow-y-scroll bg-neutral-300 px-4 px-6 py-2 py-4 md:h-full"
 				>
 					{#each locations as location, i}
 						<div
@@ -183,9 +215,9 @@
 								handleMarkerClick(location);
 								showLocationIndex = i;
 							}}
-							class="  mx-auto mb-1 flex w-full flex-row  items-center     {showLocationIndex == i
+							class="  mx-auto mb-1 flex w-full flex-row items-center {showLocationIndex == i
 								? 'rounded-md  border-b-2 border-gray-700 bg-red-600'
-								: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700  bg-neutral-300 transition ease-in-out hover:-translate-y-1 hover:rounded-md  hover:bg-white   hover:shadow-lg'}  py-5 px-4  "
+								: 'delay-550 duration-600 hover:scale-140 border-b-2 border-solid border-gray-700  bg-neutral-300 transition ease-in-out hover:-translate-y-1 hover:rounded-md  hover:bg-white   hover:shadow-lg'}  px-4 py-5"
 						>
 							<img
 								src="./images/map/fire.svg"
@@ -200,13 +232,13 @@
 					{/each}
 				</div>
 			{:else}
-				<div class=" h-screen w-full bg-red-600 px-8 pt-8  text-neutral-900 shadow-2xl">
+				<div class=" h-screen w-full bg-neutral-200 px-8 pt-8 text-neutral-900 shadow-2xl">
 					<div class="mb-2 flex justify-end">
 						<button
 							on:click={() => {
 								showFull = !showFull;
 							}}
-							class="btn-circle btn"
+							class="btn btn-circle"
 						>
 							<svg
 								xmlns="http://www.w3.org/2000/svg"
@@ -223,11 +255,11 @@
 							>
 						</button>
 					</div>
-					<h3 class="font-oswald-normal  mb-4 {textTitle} text-neutral-900">
+					<h3 class="font-oswald-normal mb-4 {textTitle} text-neutral-900">
 						{selectedLocation.title}
 					</h3>
 					<p
-						class="font-notoSans-normal mb-2  h-full h-auto overflow-y-auto text-dimInHuj text-neutral-900"
+						class="font-notoSans-normal mb-2 h-auto h-full overflow-y-auto text-dimInHuj text-neutral-900"
 					>
 						{selectedLocation.desc}
 					</p>
@@ -237,7 +269,7 @@
 	</div>
 </section>
 
-<footer class="flex w-full flex-row content-center items-center justify-center bg-[#292828] py-6">
+<footer class:hidden={showContent} class="bg-[#292828] h-[40vh] flex w-full flex-row content-end items-end justify-center py-6">
 	<ul class=" flex max-w-2xl flex-row items-center justify-center">
 		<li
 			class="mr-2 transform pt-4 transition delay-150 duration-300 ease-in-out hover:-translate-y-6"
@@ -263,7 +295,7 @@
 		<li>
 			<a target="_blank" class="group m-auto" href="https://darkdev-progect.vercel.app/">
 				<h2
-					class="text-md -mb-2 max-w-sm transform text-start font-thin text-[#dc2626] transition delay-150 duration-300 ease-in-out group-hover:translate-x-6"
+					class="text-md text-[#dc2626] -mb-2 max-w-sm transform text-start font-thin transition delay-150 duration-300 ease-in-out group-hover:translate-x-6"
 				>
 					Development by
 				</h2>
@@ -276,6 +308,8 @@
 		</li>
 	</ul>
 </footer>
+
+
 <!--
 <section class="bg-neutral-200 py-4 px-2 md:px-5 lg:px-5">
 	<div
@@ -518,6 +552,90 @@
 	</div>
 </section> -->
 <style>
+  @keyframes slideRight {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(100%);
+    }
+}
+
+.hero.slide-right {
+    animation: slideRight 2s forwards;
+}
+
+  /* Background */
+	.wrap {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		position: relative;
+		min-height: 100vh;
+	}
+	/* Footprint */
+	.footprint {
+		position: absolute;
+		top: 20%;
+		left: 0;
+
+		animation: walk 5s steps(10, end) infinite, walkopacity 2s ease-out infinite;
+		text-align: center;
+	}
+	/* Image Size */
+	.footprint img {
+		transform: rotate(45deg);
+	}
+	/* Right Footprint */
+	.right {
+		margin: 5rem;
+		animation-delay: 250ms;
+	}
+	/* Walking Animation */
+	@keyframes walk {
+		to {
+			transform: translateX(100vw);
+		}
+	}
+	/* Opacity During Walking */
+	@keyframes walkopacity {
+		0%,
+		100% {
+			opacity: 0;
+		}
+		50% {
+			opacity: 0.4;
+		}
+	}
+
+	.text-animation {
+		opacity: 0;  
+	}
+
+	.text-animation.fade-in {
+		opacity: 1;  
+		transition: opacity 1s ease; 
+	}
+
+	.hero {
+		transition: opacity 5s ease; 
+		opacity: 1;  
+	}
+
+	#container-hero {
+		display: flex;
+		width: 100%;
+		height: 100%;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.wrap svg {
+		display: block;
+		max-height: 100vh;
+		height: 400px;
+	}
+
 	:root {
 		--color-1: #fff;
 		--color-2: #dc2626;
